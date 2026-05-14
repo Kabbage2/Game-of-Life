@@ -43,7 +43,8 @@ def changesqrcolr(n):
     else:
        my_rects[f"rect_{n}"].color = white
        my_rects[f"rect_{n}"].invcol = black
-       my_rects[f"rect_{n}"].draw()  
+       my_rects[f"rect_{n}"].draw()
+    pygame.display.flip()  
 
 
 while True:    
@@ -53,4 +54,3 @@ while True:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             rect_num = (mouse_y // 100) * 5 + (mouse_x // 100)
             changesqrcolr(rect_num) 
-            pygame.display.flip()           
