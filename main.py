@@ -9,32 +9,29 @@ screen = pygame.display.set_mode(size)
 background = pygame.Surface(size)
 
 class rect:
-    def __init__(self, color, pos, surface, clicked, invcol):
+    def __init__(self, color, pos, surface, invcol):
         self.color = color
         self.pos = pos
         self.surface = surface
-        self.clicked = clicked
         self.invcol = invcol
 
 
     def draw(self):
         pygame.draw.rect(self.surface, self.invcol, ((self.pos), (100,100)))
-        pygame.draw.rect(self.surface, self.color, ((self.pos), (100,100)), self.clicked)
+        pygame.draw.rect(self.surface, self.color, ((self.pos), (100,100)), 1)
         
-
-
+rep_rects = {}
 my_rects = {}
 num = 0
 
 for y in range(0, height, 100):
     for x in range(0, width, 100):
-        my_rects[f"rect_{num}"] = rect(white, (x,y), screen, 1, black)
+        my_rects[f"rect_{num}"] = rect(white, (x,y), screen, black)
         my_rects[f"rect_{num}"].draw()
- 
+        rep_rects[x // 100, y // 100] = 0
         num += 1
-
-
 pygame.display.flip() 
+
 def changesqrcolr(n):
     if my_rects[f"rect_{n}"].color == white:
         my_rects[f"rect_{n}"].color = black
@@ -46,6 +43,8 @@ def changesqrcolr(n):
        my_rects[f"rect_{n}"].draw()
     pygame.display.flip()  
 
+def get_neighbors(coords: tuple):
+    print(coords)
 
 while True:    
     for event in pygame.event.get():
