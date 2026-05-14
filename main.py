@@ -35,7 +35,15 @@ for y in range(0, height, 100):
 
 
 pygame.display.flip() 
-
+def changesqrcolr(n):
+    if my_rects[f"rect_{n}"].color == white:
+        my_rects[f"rect_{n}"].color = black
+        my_rects[f"rect_{n}"].invcol = white
+        my_rects[f"rect_{n}"].draw()
+    else:
+       my_rects[f"rect_{n}"].color = white
+       my_rects[f"rect_{n}"].invcol = black
+       my_rects[f"rect_{n}"].draw()  
 
 
 while True:    
@@ -44,12 +52,5 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             rect_num = (mouse_y // 100) * 5 + (mouse_x // 100)
-            if my_rects[f"rect_{rect_num}"].color == white:
-                my_rects[f"rect_{rect_num}"].color = black
-                my_rects[f"rect_{rect_num}"].invcol = white
-                my_rects[f"rect_{rect_num}"].draw()
-            else:
-               my_rects[f"rect_{rect_num}"].color = white
-               my_rects[f"rect_{rect_num}"].invcol = black
-               my_rects[f"rect_{rect_num}"].draw() 
+            changesqrcolr(rect_num) 
             pygame.display.flip()           
